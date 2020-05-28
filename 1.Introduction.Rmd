@@ -1,0 +1,83 @@
+---
+title: 'Introduction and Chapter arrangement'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(ISLR)
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+## Datasets used
+
+### Wage data:
+
+Dataset of wages for a group of males from Atlantic region of USA.Here variable being predicted(Wage of individual) is a continous variable.
+
+```{r}
+summary(Wage)
+```
+
+### Stock Market Data:
+
+Dataset of daily movements in S&P 500 stock index over 5 years(Between 2001 and 2005). Here the variable being predicted is catagotical or qualitative.
+
+
+```{r}
+summary(Smarket)
+```
+
+### Gene Expression Data:
+
+This dataset consists of gene expressions of cancer cells. Here instead of predicting particular output we try to find clusters.
+
+```{r}
+summary(NCI60)
+```
+
+## History of Statistical learning:
+
++ Legendre and Gauss published papers on the **method of least squares**, which implemented the earliest form of what is now known as **linear regression** first successfully applied to Astronomy.
+  * Linear refression is used to predict continous values like salery etc
++ Fischer proposed **Linear discriminant analysis** to predict discrete outcomes.
++ In the 1940s, various authors put forth an alternative approach, logistic regression
++ Until 1970 most of the models were linear since computing was not feasible.
++ After computers improved 1980s saw models like **Classification and regression trees** by Breiman, Friedman, Olshen and Stone.generalized additive models by Hastie and Tibshirani.
+
+## This Book:
+
+**Elements of Statistical Learning(ESL)** was first published in 2001 and quickly became an important referance book.But the field as rapidly evolved to work in tandum with many other fields. 
+
+This book **Introduction to statistical leatning(ISL)** is not intended to replace ESL but Its purpose is to facilitate the transition of statistical learning from an academic to a mainstream field. While ESL deals with statistical techniques in a deep sense, ISL aims to bring statistical learning techniques to a wider range of interests and backgrounds.
+
+### ISLR is based on the following four premises:
+
+1. Many statistical learning methods are relevant and useful in a wide range of academic and non-academic disciplines, beyond just the statistical sciences.
+2. Statistical learning should not be viewed as a series of black boxes.
+3. While it is important to know what job is performed by each cog, it is not necessary to have the skills to construct the machine inside the box
+4. It is presumed that the reader is interested in applying statistical learning methods to real-world problems.
+
+
+## Who Should Read This Book?
+
+This book is intended for anyone who is interested in using modern statistical methods for modeling and prediction from data.
+
+It is expected that the reader will have had at least one elementary course in statistics. Background in linear regression is also useful, though not required.
+
+## Organization of This Book
+
++ **Chapter 2** has basic terminology and introduces KNN
++ **Chapter 3** reviews Linear regression.
++ **Chapter 4** discusses logistic regression and linear discriminant analysis.
++ **Chapter 5** introduces us to cross-validation and the bootstrap which can be used to estimate the accuracy of a number of different methods in order to choose the best one.
++ **Chapter 6** takes us through classical and modern linear models like stepwise selection, ridge regression,principal components regression, partial least squares, and the lasso are introduced here. Linear models are advantageous over non-linear in terms of interpretability and sometimes accuracy.
++ **Chapter 7** first covers non-linear models for solving problems with *single input variables* and then continues to show how these methods can be used to fit non-linear additive models for which there is *more than one input*
++ **Chapter 8** investigates tree-based methods,including bagging, boosting, and random forests
++ **Chapter 9** discusses Support vector machines, a set of approaches for performing both linear and non-linear classification
++ **Chapter 10** helps us navigate problems in the relm of unsupervised learning where we have input variables but no output variable. In particular, principal components analysis, K-means clustering, and hierarchical clustering are presented. 
+
+
+**R lab** at the end of each chapter systamatically works through the concepts explained in the chapter.
+
+**Datasets** used in the texbook are avalable as part of [ISLR](https://cran.r-project.org/web/packages/ISLR/index.html) package and can be downloaded from cran.

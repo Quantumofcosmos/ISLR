@@ -1,0 +1,168 @@
+---
+title: "Statistical learning"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(ISLR)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Statistical learning:
+
+The variables whose values are known are called as **input variables**. They are typically denoted with symbol $X$. Notation for multiple variables are differentiated by adding subscript to the symbol. So the first variable is denoted as $X_1$ and $n^{th}$ variable is denoted as $X_n$. 
+
+The **input variables** are sometimes also called as predictors, independent variables, features or sometimes just variables.
+
+The **output variable** is often called the response or dependent variable, and is typically denoted using the symbol $Y$ .
+
+To generalize , suppose that we observe a quantitative response $Y$ and $p$
+different predictors, $X_1, X_2,...,X_p$ and assume that there is some relationship between $Y$ and $X = (X_1, X_2,...,X_p)$ It can be writtern as 
+$$Y = f(X) + \epsilon$$
+Here $f$ is some fixed but unknown function of $X_1,...,X_p$, and $\epsilon$ is a random error term, which is independent of X and has mean zero.It can be said that $f$ represents the systematic information that $X$ provides about $Y$ and must be estimated based on observed points. 
+
+In general $f$ may involve one or more than one input variable. and is considered as a black-box in this case.
+
+**Statistical learning** refers to a set of approaches for estimating $f$.
+
+## Why Estimate f?
+There are two main reasons that we may wish to estimate f: *prediction* and *inference*.
+
+### prediction:
+
+In many situations, a set of inputs $X$ are readily available, but the output $Y$ cannot be easily obtained. In these settings, we can predict $Y$ using 
+$$\hat{Y} = \hat{f}(X)$$
+
+where $\hat{f}$ represents our estimate for $f$, and $\hat{Y}$ represents the resulting prediction for Y. The accuracy of $\hat{Y}$ as a prediction of Y depends on two quantities called reducible error and the irreducible error.
+
+1. Reducible error:
+In general $\hat{f}$ will not be a perfect estimate for $f$, and this inaccuracy will introduce some error. This error is **reducible** because we can potentially improve the accuracy of $\hat{f}$ by using the most appropriate statistical learning technique to estimate $f$.
+
+2. Irreducible error:
+But since by definition $Y$ is a function of $\epsilon$ too. This introduces an error that cannot be removed and error caused is called irreducible error.
+
+The quantity $\epsilon$ may contain unmeasured variables that are useful in predicting $Y$ but since we don’t measure them, f cannot use them for its prediction. The quantity $\epsilon$ may
+also contain unmeasurable variation.
+
+Consider a given estimate $\hat{f}$ and a set of predictors $X$, which yields the prediction $\hat{Y} = \hat{f}(X)$. Assume for a moment that both $\hat{f}$ and $X$ are fixed. Then, it is easy to show that
+
+$$\begin{aligned} 
+E(Y-\hat{Y})^2 {} & = E[f(X) + \epsilon - \hat{f}(X)]^2 \\
+                  & = \underbrace{[f(X)-\hat{f}(X)]^2}_\text{Reducible} + \underbrace{Var(\epsilon)}_\text{Irreducible}
+\end{aligned}$$
+
+Where $E(Y-\hat{Y})$ represents the average, or expected value, of the squared difference between the predicted and actual value of Y and $Var(\epsilon)$ represent variance associated with error term $\epsilon$
+
+Focus of this book is minimizing reduciable error.
+
+### Inference:
+
+Sometimes we might be interested in understanding the relationship between $X$ and $Y$ , or more specifically, to understand how Y changes as a function of $X_1, . . .,X_p$.In this situation $f$ cannot be treated as a black box, because we need to know its exact form.
+
+Some of the questions one may be interested in answering are 
+
+* Which predictors are strongly/weakly associated with the response
+* What is the relationship between the response and each predictor
+* Can the relationship between Y and each predictor be adequately summarized using a linear equation, or is the relationship more complicated?
+
+In this book, we will see a number of examples that fall into the prediction setting, the inference setting, or a combination of the two.
+
+>Depending on whether our ultimate goal is prediction, inference, or a combination of the two, different methods for estimating f may be appropriate.
+For example, linear models allow for relatively simple and interlinear model pretable inference, but may not yield as accurate predictions as some other approaches. In contrast, some of the highly non-linear approaches that we discuss in the later chapters of this book can potentially provide quite accuratepredictions for Y , but this comes at the expense of a less interpretable model for which inference is more challenging.
+
+### How do we estimate $f$
+
+Both linear and non linear share certain charecteristics. We will always assume that we have observed a set of n different data points called *training data* because we use this data to teach/train our method to estimate $f$.
+
+>Our goal is to apply a statistical learning method to the training data in order to estimate the unknown function f. In other words, we want to find a function ˆ f such that Y ≈ ˆ f(X) for any observation (X, Y ). Broadly speaking, most statistical learning methods for this task can be characterized as either parametric or non-parametric. 
+
+#### Parametric Methods:
+
+Parametric methods involve two-step model-based approach.
+
+1. First we make assumption about shape of $f$. For example:
+
+$$f(X)=\beta_0+\beta_1x_1+\beta_2x_2+ . . . .+\beta_px_p$$
+This is linear model of $f$ in $X$. Once we asume that model is linear we only have to estimate $p+1$ coefficients $\beta_0,\beta_1,..,\beta_p$ instead of arbitary $p$-dimentional function.
+
+2. After model has been selected parameters $\beta_0,\beta_1,..,\beta_p$ are estimated using procedures like OLS(ordinary least squares).  
+
+>The potential disadvantage of a parametric approach is that the model we choose will usually not match the true unknown form of f. If the chosen model is too far from the true f, then our estimate will be poor. We can try to address this problem by choosing flexible models that can fit many different possible functional forms flexible for f. But in general, fitting a more flexible model requires estimating a greater number of parameters. These more complex models can lead to a phenomenon known as overfitting the data, which essentially means they follow the errors, or noise, too closely. These issues are discussed throughout this book.
+
+#### Non-parametric Methods:
+
+Non-parametric methods do not make explicit assumptions about form of $f$ but try to estimate it without being too wiggly or rough. This can help in fitting wider range of shapes but it needs large number of observations to estimate even small number of parameters.
+
+### The Trade-Off Between Prediction Accuracy and Model Interpretability
+
+Models like linear regression are less flexible but more interpretable in comparison to models like thin plate spline.
+
+If we are mainly interested in inference, then restrictive models are much more interpretable.
+
+
+Interpretable<--------------------------->Flexible
+
+Linear<>Lasso<>GAM<>Trees<>Bagging;Boosting<>SVM
+
+### Supervised Vs Unsupervised Learning 
+
+In supervised learning for every observation $x_1,x_2,.....,x_n$ there is an associated response measurement $y$ and we wish to find a fit that accurately predicts $y$ for a given $x$. 
+
+In contrast, Unsupervised learning has observations $x_1,x_2,.....,x_n$ but no associated response $y_i$ to supervise model fitting hence called unsupervised learning.
+
+One tool that we may use in this setting is cluster analysis whose goal is to ascertain whether observations fall into relatively distinct groups.
+
+Many problems naturally fall into supervised or unsupervised learning paradigms. However there arises some situations like there are n observations and m responses where m<n.we have unsupervised problem for n-m observations and supervised problem for the rest. This comes under semi-supervised learning and is out of scope for this book.
+
+### Regression vs Classification Problems
+
+Quantitative responses are usually modelled with regression meathods and qualitative/categorical values are modelled with classification methods. But the distinction is not always crisp.
+
+Logistic regression is typically used with a qualitative (two-class, or binary) response.making it a classification method. But since it estimates class probabilities, it can be thought of as a regression. In same way K-nearest neighbors and boosting, can be used in the case of either quantitative or qualitative responses.
+
+Statistical learning methods are usually selected based on whether response is quantitative or qualitative. predictors are generally considered less important.
+
+## Assessing Model Accuracy
+
+*There is no free lunch in statistics.* No one method works for all possible datasets. It is important to decide which method produces best results for a given dataset. Following are few concepts that arise while selecting the learning procedure.
+
+### Measuring Quality of Fit:
+
+In order to evaluate performance of statistical leatning method we need a way to find how close pridicted value is to the actual value. In regression Mean squared error(MSE) is most commonly used.
+
+$$MSE = \frac{1}{n}\sum_{i=1}^n(y_i-\hat{f}(x_i))^2$$
+
+where $\hat{f}(x_i)$ is prediction that $\hat{f}$ gives for $i$th observation.MSE will be large if predicted values are close to actual values and viceversa.
+
+This MSE should technically be called as *training MSE* because we do not want to see how good the fit is on test set but how close the pridictions are to the actual value on a previously unseen datapoint. In other words, we could compute $Ave(y_0-\hat{f}(x_0))^2$ and select the model with least value where $(x_0,y_0)$ are previously unseen observations.
+
+If test set is available then model with least test MSE must be preffered but in abscence of test set. train MSE should be considered as evaluation metric.
+
+But the problem originates because most of the models estimate coefficients to minimize train MSE. In these cases train MSE would be small but test MSE would be large. 
+
+>As the flexibility of the statistical learning method increases, we observe a monotone decrease in the training MSE and a U-shape in the test MSE. This is a fundamental property of statistical learning that holds regardless of the particular data set at hand and regardless of the statistical method being used.
+
+
+### Bias-Variance Trade-Off
+
+The expected test MSE for a given value $x_0$ can always be decomposed into sum of three fundamental quantities: The *variance* of $\hat{f}(x_0)$, *squared bias* of $\hat{f}(x_0)$, and vaience of error($\epsilon$).That is
+
+$$E(y_0-\hat{f}(x_0))^2=Var(\hat{f}(x_0))+ [Bias(\hat{f}(x_0))]^2+Var(\epsilon)$$
+
+Here $E(y_0-\hat{f}(x_0))^2$ is expected test MSE.so
+
+>in order to minimize the expected test error,we need to select a statistical learning method that simultaneously achieves low variance and low bias. Note that variance is inherently a nonnegative quantity, and squared bias is also nonnegative. Hence, we see that the expected test MSE can never lie below Var(), the irreducible error.
+
+*Variance* refers to the amount by which $\hat{f}$ would change if we estimated it with different training dataset. learning methods with high flexibility will have high variance.
+
+*bias* refers to the error that is introduced by approximating a real-life problem by a much simpler model.
+
+As a general rule, as we use more flexible methods, the variance will increase and the bias will decrease.
+
+This relationship between bias, variance, and test set MSE is called as Bias Varience tradeoff.It is easy to obtain a method with high variance low bias(curve through every observation) or low variance and high bias(fit a line to data). Challenge lies in finding a method that has both varience and squared bias are low.
+
+### The classification setting
+
+37
+
+18 26 34 42 50 58
