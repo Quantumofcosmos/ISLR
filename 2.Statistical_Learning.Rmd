@@ -163,6 +163,33 @@ This relationship between bias, variance, and test set MSE is called as Bias Var
 
 ### The classification setting
 
-37
+Because $y_i$ is qualitative and not numeric concepts like *bias-variance trade-off* translate here with slight modifications.
+
+Most common approach for quantifying accuracy of our estimate $\hat{f}$ is *training error rate* which is **proportion of mistakes** when $\hat{f}$ is applied to training data which can be given as 
+$$
+\frac{1}{n}\sum_{i=1}^nI(y_i\neq\hat{y_i})\\
+
+where\enspace I(y_i\neq\hat{y_i}) = \left\{
+        \begin{array}{ll}
+            1 & \quad y_i\neq\hat{y_i} \\
+            0 & \quad y_i=\hat{y_i}
+        \end{array}
+    \right.
+$$
+
+Here $\hat{y_i}$ is prediction lable for $i$th observation made using $\hat{f}$. The Test error rate associated with test observations$(x_0,y_0)$ are given by $$Ave(I(y_0\neq\hat{y_0}))$$
+A good classifier is the one with least test error.
+
+
+
+
+
+
+
+
+
+
+
+45
 
 18 26 34 42 50 58
