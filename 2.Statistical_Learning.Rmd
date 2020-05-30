@@ -5,6 +5,7 @@ output: html_document
 
 ```{r setup, include=FALSE}
 library(ISLR)
+library(ggplot2)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -17,7 +18,7 @@ The **input variables** are sometimes also called as predictors, independent var
 The **output variable** is often called the response or dependent variable, and is typically denoted using the symbol $Y$ .
 
 To generalize , suppose that we observe a quantitative response $Y$ and $p$
-different predictors, $X_1, X_2,...,X_p$ and assume that there is some relationship between $Y$ and $X = (X_1, X_2,...,X_p)$ It can be writtern as 
+different predictors, $X_1, X_2,...,X_p$ and assume that there is some relationship between $Y$ and $X = (X_1, X_2,...,X_p)$ It can be written as 
 $$Y = f(X) + \epsilon$$
 Here $f$ is some fixed but unknown function of $X_1,...,X_p$, and $\epsilon$ is a random error term, which is independent of X and has mean zero.It can be said that $f$ represents the systematic information that $X$ provides about $Y$ and must be estimated based on observed points. 
 
@@ -53,7 +54,7 @@ E(Y-\hat{Y})^2 {} & = E[f(X) + \epsilon - \hat{f}(X)]^2 \\
 
 Where $E(Y-\hat{Y})$ represents the average, or expected value, of the squared difference between the predicted and actual value of Y and $Var(\epsilon)$ represent variance associated with error term $\epsilon$
 
-Focus of this book is minimizing reduciable error.
+Focus of this book is minimizing reducible error.
 
 ### Inference:
 
@@ -72,7 +73,7 @@ For example, linear models allow for relatively simple and interlinear model pre
 
 ### How do we estimate $f$
 
-Both linear and non linear share certain charecteristics. We will always assume that we have observed a set of n different data points called *training data* because we use this data to teach/train our method to estimate $f$.
+Both linear and non linear share certain characteristics. We will always assume that we have observed a set of n different data points called *training data* because we use this data to teach/train our method to estimate $f$.
 
 >Our goal is to apply a statistical learning method to the training data in order to estimate the unknown function f. In other words, we want to find a function ˆ f such that Y ≈ ˆ f(X) for any observation (X, Y ). Broadly speaking, most statistical learning methods for this task can be characterized as either parametric or non-parametric. 
 
@@ -83,7 +84,7 @@ Parametric methods involve two-step model-based approach.
 1. First we make assumption about shape of $f$. For example:
 
 $$f(X)=\beta_0+\beta_1x_1+\beta_2x_2+ . . . .+\beta_px_p$$
-This is linear model of $f$ in $X$. Once we asume that model is linear we only have to estimate $p+1$ coefficients $\beta_0,\beta_1,..,\beta_p$ instead of arbitary $p$-dimentional function.
+This is linear model of $f$ in $X$. Once we assume that model is linear we only have to estimate $p+1$ coefficients $\beta_0,\beta_1,..,\beta_p$ instead of arbitrary $p$-dimensional function.
 
 2. After model has been selected parameters $\beta_0,\beta_1,..,\beta_p$ are estimated using procedures like OLS(ordinary least squares).  
 
@@ -116,7 +117,7 @@ Many problems naturally fall into supervised or unsupervised learning paradigms.
 
 ### Regression vs Classification Problems
 
-Quantitative responses are usually modelled with regression meathods and qualitative/categorical values are modelled with classification methods. But the distinction is not always crisp.
+Quantitative responses are usually modeled with regression methods and qualitative/categorical values are modeled with classification methods. But the distinction is not always crisp.
 
 Logistic regression is typically used with a qualitative (two-class, or binary) response.making it a classification method. But since it estimates class probabilities, it can be thought of as a regression. In same way K-nearest neighbors and boosting, can be used in the case of either quantitative or qualitative responses.
 
@@ -128,15 +129,15 @@ Statistical learning methods are usually selected based on whether response is q
 
 ### Measuring Quality of Fit:
 
-In order to evaluate performance of statistical leatning method we need a way to find how close pridicted value is to the actual value. In regression Mean squared error(MSE) is most commonly used.
+In order to evaluate performance of statistical learning method we need a way to find how close predicted value is to the actual value. In regression Mean squared error(MSE) is most commonly used.
 
 $$MSE = \frac{1}{n}\sum_{i=1}^n(y_i-\hat{f}(x_i))^2$$
 
 where $\hat{f}(x_i)$ is prediction that $\hat{f}$ gives for $i$th observation.MSE will be large if predicted values are close to actual values and viceversa.
 
-This MSE should technically be called as *training MSE* because we do not want to see how good the fit is on test set but how close the pridictions are to the actual value on a previously unseen datapoint. In other words, we could compute $Ave(y_0-\hat{f}(x_0))^2$ and select the model with least value where $(x_0,y_0)$ are previously unseen observations.
+This MSE should technically be called as *training MSE* because we do not want to see how good the fit is on test set but how close the predictions are to the actual value on a previously unseen datapoint. In other words, we could compute $Ave(y_0-\hat{f}(x_0))^2$ and select the model with least value where $(x_0,y_0)$ are previously unseen observations.
 
-If test set is available then model with least test MSE must be preffered but in abscence of test set. train MSE should be considered as evaluation metric.
+If test set is available then model with least test MSE must be preferred but in absence of test set. train MSE should be considered as evaluation metric.
 
 But the problem originates because most of the models estimate coefficients to minimize train MSE. In these cases train MSE would be small but test MSE would be large. 
 
@@ -145,7 +146,7 @@ But the problem originates because most of the models estimate coefficients to m
 
 ### Bias-Variance Trade-Off
 
-The expected test MSE for a given value $x_0$ can always be decomposed into sum of three fundamental quantities: The *variance* of $\hat{f}(x_0)$, *squared bias* of $\hat{f}(x_0)$, and vaience of error($\epsilon$).That is
+The expected test MSE for a given value $x_0$ can always be decomposed into sum of three fundamental quantities: The *variance* of $\hat{f}(x_0)$, *squared bias* of $\hat{f}(x_0)$, and variance of error($\epsilon$).That is
 
 $$E(y_0-\hat{f}(x_0))^2=Var(\hat{f}(x_0))+ [Bias(\hat{f}(x_0))]^2+Var(\epsilon)$$
 
@@ -159,7 +160,7 @@ Here $E(y_0-\hat{f}(x_0))^2$ is expected test MSE.so
 
 As a general rule, as we use more flexible methods, the variance will increase and the bias will decrease.
 
-This relationship between bias, variance, and test set MSE is called as Bias Varience tradeoff.It is easy to obtain a method with high variance low bias(curve through every observation) or low variance and high bias(fit a line to data). Challenge lies in finding a method that has both varience and squared bias are low.
+This relationship between bias, variance, and test set MSE is called as Bias Variance tradeoff.It is easy to obtain a method with high variance low bias(curve through every observation) or low variance and high bias(fit a line to data). Challenge lies in finding a method that has both variance and squared bias are low.
 
 ### The classification setting
 
@@ -177,9 +178,76 @@ where\enspace I(y_i\neq\hat{y_i}) = \left\{
     \right.
 $$
 
-Here $\hat{y_i}$ is prediction lable for $i$th observation made using $\hat{f}$. The Test error rate associated with test observations$(x_0,y_0)$ are given by $$Ave(I(y_0\neq\hat{y_0}))$$
+Here $\hat{y_i}$ is prediction label for $i$th observation made using $\hat{f}$. The Test error rate associated with test observations$(x_0,y_0)$ are given by $$Ave(I(y_0\neq\hat{y_0}))$$
 A good classifier is the one with least test error.
 
+#### Bayes Classifier:
+
+>It assigns each observation to the most likely class, given its predictor values.
+
+In other words, we should simply assign an observation $x_0$ to a class $j$ for which
+$$Pr(Y=j|X=x_0)$$
+is the largest.Since the Bayes classifier will always choose the class for which above probability is largest, the bayes error rate at $X = x_0$ will be given by
+$$1-max_jPr(Y=j|X=x_0)$$
+
+#### K-Nearest Neighbors
+
+We do not always know conditional distribution of Y given X.KNN for a given positive integer K tries to estimate the conditional distribution of Y given $x_0$, by classifying the given observation to the class with majority of K nearest points available around $x_0$.
+
+
+## Skipping R Basics
+
+## Exercises:
+
+1. Indicate whether performance of flexible statistical learning method would be better or worse than an inflexible method.
+(a) **Large sample size and small number of predictors** implies the data available is diverse so the flexible method will have better performance with minimum chance to overfit
+
+(b) **Small observation size and large number of predictors** implies that inflexible methods will have better performance as they can be trained better with large predictors and flexible methods might overfit with small observation size.
+
+(c) when the **relationship between predictor and response is highly non-linear** inflexible methods have better performance as flexible methods would be too rigid to estimate the underlying relationship.
+
+(d) When the **variance of the error terms is extremely high** inflexible methods would perform better as there is scope to overfit with flexible methods.
+
+2. Explain whether each scenario is a classification or regression problem.
+(a) Regression problem. Inference. n=500 and p=3
+(b) Classification Problem. Prediction. n=20 and p=13
+(c) regression. Prediction. n=52 and p=3
+
+```{r}
+base <- ggplot(data.frame(x = c(1, 60)), aes(x))
+base + stat_function(fun = ~.x,color="red") +
+  stat_function(fun = ~150*exp(-.x),color="blue") +
+  scale_x_log10()+
+  geom_hline(yintercept=30,linetype="dashed")
+```
+
+4. Real life applications of statistical learning
+(a) Classification:
+
+
+|S.no|situation|predictors|response|inference or prediction|explanation|
+|----|---------|----------|--------|-----------------------|------------|
+|1|stock market analysis|previous stock prices|stocks go up or down|prediction|analysis can be done on previous prices of stocks in order to predict whether the stock in consideration would go up or down|
+|2|medicine trails|different compounds in administered medicine and information of patient|Drug being accepted or rejected by patients body|inference|what features contribute to acceptance or rejection of drug by the body|
+|3|designing marketing strategy|amount spent on different streams of advertising, number of people consuming each stream|increase in sales|inference|Budget can be maximized for the stream with highest return|
+
+(b) Regression:
+
+
+|S.no|situation|predictors|response|inference or prediction|explanation|
+|----|---------|----------|--------|-----------------------|------------|
+|1|income a person|age,education,experience,sex,sector|income|prediction|income of the person can be predicted with model trained with available predictors|
+|2|house price|area, age, locality, bedrooms, condition,number of previous owners|price of house|inference|most desirable properties of house can be found out and improve the value of house by improving the attribute.|
+|1|mileage of car|weight, drive, cylinders, displacement|mileage|prediction|mileage of car can be predicted based on predictors|
+
+
+(c) Cluster analysis
+
+
+|S.no|situation|predictors|response|inference or prediction|explanation|
+|----|---------|----------|--------|-----------------------|------------|
+|1|Targeted ads|age,gender,place|different target segments|-|target audience can be segmented into different clustered to run ad campaigns more effectively|
+|2|market basket analysis|age,gender,place|different target segments|-|target audience can be segmented into different clustered to run ad campaigns more effectively|
 
 
 
@@ -190,6 +258,20 @@ A good classifier is the one with least test error.
 
 
 
-45
 
-18 26 34 42 50 58
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+52
