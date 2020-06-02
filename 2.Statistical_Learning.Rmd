@@ -1,11 +1,13 @@
 ---
 title: "Statistical learning"
 output: html_document
+header-includes:
+  - \usepackage{color}
+  - \usepackage{amsmath}
 ---
 
 ```{r setup, include=FALSE}
 library(ISLR)
-library(ggplot2)
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
@@ -167,16 +169,15 @@ This relationship between bias, variance, and test set MSE is called as Bias Var
 Because $y_i$ is qualitative and not numeric concepts like *bias-variance trade-off* translate here with slight modifications.
 
 Most common approach for quantifying accuracy of our estimate $\hat{f}$ is *training error rate* which is **proportion of mistakes** when $\hat{f}$ is applied to training data which can be given as 
-$$
-\frac{1}{n}\sum_{i=1}^nI(y_i\neq\hat{y_i})\\
 
-where\enspace I(y_i\neq\hat{y_i}) = \left\{
+$$\frac{1}{n} \sum_{i=1}^n I(y_i\neq\hat{y_i})\\$$
+
+where $$\enspace I(y_i\neq\hat{y_i}) = \left\{
         \begin{array}{ll}
             1 & \quad y_i\neq\hat{y_i} \\
             0 & \quad y_i=\hat{y_i}
         \end{array}
-    \right.
-$$
+    \right.$$
 
 Here $\hat{y_i}$ is prediction label for $i$th observation made using $\hat{f}$. The Test error rate associated with test observations$(x_0,y_0)$ are given by $$Ave(I(y_0\neq\hat{y_0}))$$
 A good classifier is the one with least test error.
@@ -213,14 +214,6 @@ We do not always know conditional distribution of Y given X.KNN for a given posi
 (b) Classification Problem. Prediction. n=20 and p=13
 (c) regression. Prediction. n=52 and p=3
 
-```{r}
-base <- ggplot(data.frame(x = c(1, 60)), aes(x))
-base + stat_function(fun = ~.x,color="red") +
-  stat_function(fun = ~150*exp(-.x),color="blue") +
-  scale_x_log10()+
-  geom_hline(yintercept=30,linetype="dashed")
-```
-
 4. Real life applications of statistical learning
 (a) Classification:
 
@@ -247,31 +240,5 @@ base + stat_function(fun = ~.x,color="red") +
 |S.no|situation|predictors|response|inference or prediction|explanation|
 |----|---------|----------|--------|-----------------------|------------|
 |1|Targeted ads|age,gender,place|different target segments|-|target audience can be segmented into different clustered to run ad campaigns more effectively|
-|2|market basket analysis|age,gender,place|different target segments|-|target audience can be segmented into different clustered to run ad campaigns more effectively|
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-52
+|2|market basket analysis|Items purchased by buyers in a single bill |different target segments|-|Item frequently bought together can be identified for the possibility of cross sell and up sell|
+|3|Recommendation systems|previous interactions within system|-|Products like search results, movies, things being sold can be recommended in a better way with cluster analysis|
