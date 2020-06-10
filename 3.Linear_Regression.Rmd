@@ -1,0 +1,87 @@
+---
+title: "3.Linear Regression"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(ISLR)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction:
+
+Linear regression isa very simple approach for supervised learning. In particular, it is a useful tool for predicting a quantitative response.
+
+Consider the advertising dataset talked about in the first chapter.In order to provide recommendations, a few important questions that we might seek to answer:
+
+* Is there a relationship between advertising budget and sales?
+* How strong is the relationship between advertising budget and sales?
+* Which media contribute to sales?
+* How accurately can we estimate the effect of each medium on sales?
+* How accurately can we predict future sales?
+* Is the relationship linear?
+* Is there synergy among the advertising media?
+
+Linear regression can be used to answer each of these questions.
+
+## Simple Linear Regression 
+
+It assumes that relationship between $X$(predictor variable) and $Y$(quantitative response) is linear which can be written as:
+$$
+Y \approx \beta_0+\beta_1X\\
+or\\
+\hat{y}\approx\hat\beta_0+\hat\beta_1x
+$$
+Where $\hat\beta_0,\hat\beta_1$ are called model coefficients that are to be modeled based on available values of $x$ to predict value $\hat{y}$. Here they represent slope and intercept.
+
+the most common approach involves minimizing the least squares or residual sum of squares.
+
+how accurate is the sample mean $\hat{\mu}$ as an estimate of $\mu$ can be given by standard error of $\hat{\mu}$ 
+
+$$
+Var(\hat{\mu})=SE(\hat{\mu})^2=\frac{\sigma^2}{n}
+$$
+
+where $\sigma$ is the standard deviation of each of the realizations $y_i$ of Y
+
+The estimate of $\sigma$ is known as the *residual standard error*, and is given by the formula 
+
+$$
+Residual\ standard\ error(RSE) = \sqrt{\frac{RSS}{(n − 2)}}
+$$
+
+Standard errors can be used to compute confidence intervals. A 95% confidence is defined as a range of values such that with 95 % interval probability, the range will contain the true unknown value of the parameter and can be approximately given as $\hat{\beta}\pm2.SE(\hat{\beta})$ that makes interval as $[\hat{\beta}-2.SE(\hat{\beta}),\hat{\beta}+2.SE(\hat{\beta})]$
+
+Standard errors can also be used to perform hypothesis tests on the coefficients.
+
+The most common **hypothesis test** involves testing the null hypothesis of $H_0$ : There is no relationship between X and Y versus the alternative hypothesis $H_a$:  There is some relationship between X and Y.
+
+Mathematically, this corresponds to testing $H_0 : \beta_1 = 0$ versus $H_a : \beta_1 \ne 0$ since if $\beta_1=0$ then model reduces to $Y=\beta_0+\epsilon$
+
+To test the null hypothesis, we need to determine whether $\hat{\beta_1}$, our estimate for $\beta_1$, is sufficiently far from zero, How far depends on $SE(\hat{\beta_1})$. if SE is small then relatively small values of $\hat{\beta_1}$ suggests a strong evidence to reject null hypothesis.In practice we compute **t-statistic** which measures number of standard deviations that $\hat{\beta_1}$ is away from 0. 
+$$
+t=\frac{\hat{\beta_1}-0}{SE(\hat{\beta_1})}
+$$
+
+### Assessing the Accuracy of the Model
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
