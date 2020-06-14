@@ -463,7 +463,19 @@ Y=\beta_0+\beta_1X_1+\beta_2X_2+ \ .\ .\ .+\beta_pX_p+\epsilon
 </ul>
 <div id="is-there-a-relationship-between-the-response-and-predictors" class="section level4">
 <h4>Is There a Relationship Between the Response and Predictors?</h4>
-<p>87</p>
+<p>In simple regression setting we checked if <span class="math inline">\(\beta_1=0\)</span> in multiple regression setting we testfor null hypothesis of <span class="math display">\[
+H_0: \beta_1\ =\ \beta_2\ =\ .\ .\ . =\beta_p\ =\ 0
+\]</span></p>
+<p>Versus the alternative</p>
+<p><span class="math display">\[
+H_a : at\ least\ one \ \beta_j\ is\ non-zero
+\]</span></p>
+<p>This hypothesis test is performed by computing the F-statistic,</p>
+<p><span class="math display">\[
+F=\frac{(TSS-RSS)/p}{RSS/(n-p-1)}
+\]</span></p>
+<p>Like in simple linear regression, <span class="math inline">\(TSS=\sum(y_i-\bar{y})^2\)</span> and <span class="math inline">\(RSS=\sum(y_i-\hat{y})^2\)</span>. If the linear model assumptions are correct it can be shown that <span class="math inline">\(E\{RSS/(n-p-1)\}=\sigma^2\)</span> and that provided <span class="math inline">\(H_0\)</span> is true, <span class="math inline">\(E\{(TSS-RSS)/p\}=\sigma^2\)</span>. Hence if there is no relationship between response and predictors, one would expect F-statistic to be close to 1. But if <span class="math inline">\(H_a\)</span> is true,<span class="math inline">\(E\{(TSS-RSS)/p\}&gt;\sigma^2\)</span> leading to an F-statistic greater than 1.</p>
+<p>88</p>
 <p>83 88 93 98 103 108 113 118 123 128 133 138 143 148 153 158</p>
 </div>
 </div>
