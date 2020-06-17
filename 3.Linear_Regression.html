@@ -475,6 +475,16 @@ H_a : at\ least\ one \ \beta_j\ is\ non-zero
 F=\frac{(TSS-RSS)/p}{RSS/(n-p-1)}
 \]</span></p>
 <p>Like in simple linear regression, <span class="math inline">\(TSS=\sum(y_i-\bar{y})^2\)</span> and <span class="math inline">\(RSS=\sum(y_i-\hat{y})^2\)</span>. If the linear model assumptions are correct it can be shown that <span class="math inline">\(E\{RSS/(n-p-1)\}=\sigma^2\)</span> and that provided <span class="math inline">\(H_0\)</span> is true, <span class="math inline">\(E\{(TSS-RSS)/p\}=\sigma^2\)</span>. Hence if there is no relationship between response and predictors, one would expect F-statistic to be close to 1. But if <span class="math inline">\(H_a\)</span> is true,<span class="math inline">\(E\{(TSS-RSS)/p\}&gt;\sigma^2\)</span> leading to an F-statistic greater than 1.</p>
+<blockquote>
+<p>The approach of using an F-statistic to test for any association between the predictors and the response works when p is relatively small.If p&gt;n then there are more coefficients βj to estimate than observations from which to estimate them. In this case . . . F-statistic cannot be used</p>
+</blockquote>
+</div>
+<div id="two-deciding-on-important-variables" class="section level4">
+<h4>Two: Deciding on Important Variables</h4>
+</div>
+<div id="removing-the-additive-assumption" class="section level4">
+<h4>Removing the Additive Assumption</h4>
+<p>Consider an analysis that has 3 independent variables(<span class="math inline">\(X_1,X_2,X_3\)</span>) and a dependent variable <span class="math inline">\(Y\)</span></p>
 <p>88</p>
 <p>83 88 93 98 103 108 113 118 123 128 133 138 143 148 153 158</p>
 </div>
